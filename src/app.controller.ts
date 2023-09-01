@@ -1,6 +1,7 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
@@ -11,6 +12,10 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @ApiResponse({
+    status: 200,
+    type: 'string',
+  })
   @Get('test')
   testHandler(@Res() res: Response) {
     res.json({
